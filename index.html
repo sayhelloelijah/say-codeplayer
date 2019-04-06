@@ -2,37 +2,37 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>JQuery CodePlayer</title>
+<title>say-codeplayer</title>
 <link rel="stylesheet" href="app.css" type="text/css" />
 </head>
 <body>
-	<div id="wrapper">
-		<div id="header">
-    		<h1>Coderizer</h1>
+	<div class="codeplayer">
+		<div class="codeplayer__nav">
+    		<h1>say-codeplayer</h1>
             <div id="btnDiv">
             	<button id="runButton">Run</button>
             </div>
-            <ul id="toggles">
-            	<li class="toggle selected">HTML</li>
-                <li class="toggle">CSS</li>
-                <li class="toggle">JS</li>
-                <li class="toggle selected" id="last">Result</li>
+            <ul id="codeplayer__toggles">
+            	<li class="codeplayer__toggle codeplayer__toggle--selected">HTML</li>
+                <li class="codeplayer__toggle">CSS</li>
+                <li class="codeplayer__toggle">JS</li>
+                <li class="codeplayer__toggle codeplayer__toggle--selected" id="last">Result</li>
             </ul>
     	</div>
         <div class="clear"></div>
-        <div class="codeContainer" id="HTMLContainer">
+        <div class="codeplayer__player" id="HTMLContainer">
         	<div class="codeLabel">HTML</div>
         	<textarea id="htmlCode">Example Code</textarea>
         </div>
-        <div class="codeContainer" id="CSSContainer">
+        <div class="codeplayer__player" id="CSSContainer">
         	<div class="codeLabel">CSS</div>
         	<textarea id="cssCode">Example Code</textarea>
         </div>
-        <div class="codeContainer" id="JSContainer">
+        <div class="codeplayer__player" id="JSContainer">
         	<div class="codeLabel">JS</div>
         	<textarea id="jsCode">Example Code</textarea>
         </div>
-        <div class="codeContainer" id="ResultContainer">
+        <div class="codeplayer__player" id="ResultContainer">
         	<div class="codeLabel">Results</div>
             <iframe id="resultsFrame"></iframe>
         </div>
