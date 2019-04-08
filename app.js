@@ -2,15 +2,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Elements
 	const header = document.querySelector('.codeplayer__nav');
-	const playerContainer = document.querySelector('.codeplayer__player');
+	const playerContainers = Array.from(document.querySelectorAll('.codeplayer__player'));
 	const playerToggles = Array.from(document.querySelectorAll('.codeplayer__toggle'));
 	const windowHeight = window.innerHeight;
 	const headerHeight = header.clientHeight;
 	const runButton = document.querySelector('#runButton');
-	const iframe = document.querySelector('#resultsFrame');
+	const iframe = document.querySelector('.codeplayer__results');
 
 	// Style Elements
-	playerContainer.style.height = `${windowHeight - headerHeight}px`;
+	playerContainers.forEach(container => {
+		container.style.height = `${windowHeight - headerHeight}px`;
+	});
 
 	// Event Listeners
 	playerToggles.forEach(toggle => {
@@ -33,8 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			}).length;
 			let width = 100/showing;
 
-			playerContainer.style.width = `${width}px`;
-			document.querySelector('#resultsFrame').style.width = `${width}px`;
+			playerContainers.forEach(container => {
+				container.style.width = `${width}%`;
+			});
+			iframe.style.width = `${width}%`;
 		})
 	});
 
