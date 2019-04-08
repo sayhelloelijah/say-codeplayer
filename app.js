@@ -1,20 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-	function myFunction() {
-		var x = document.getElementById('myDIV');
-		if (x.style.display === 'none') {
-		  x.style.display = 'block';
-		} else {
-		  x.style.display = 'none';
-		}
-	  }
-
 	// Elements
 	const header = document.querySelector('.codeplayer__nav');
 	const playerContainer = document.querySelector('.codeplayer__player');
 	const playerToggles = Array.from(document.querySelectorAll('.codeplayer__toggle'));
 	const windowHeight = window.innerHeight;
 	const headerHeight = header.clientHeight;
+	const runButton = document.querySelector('#runButton');
+	const iframe = document.querySelector('#resultsFrame');
 
 	// Style Elements
 	playerContainer.style.height = `${windowHeight - headerHeight}px`;
@@ -31,29 +24,39 @@ document.addEventListener('DOMContentLoaded', () => {
 			} else {
 				document.getElementById(`${activeDiv}Container`).style.display = 'block';
 			}
+
+			let showing = Array.from(document.querySelectorAll('.codeplayer__player'));
+			showing = showing.filter((el) => {
+				if(el.style.display !== "none" || '') {
+					return (el.style.display !== 'none');
+				}
+			}).length;
+			let width = 100/showing;
+
+			playerContainer.style.width = `${width}px`;
+			document.querySelector('#resultsFrame').style.width = `${width}px`;
 		})
 	});
+
+	// Update iframe upon clicking the run button
+	runButton.addEventListener('click', () => {
+		let cssCode = document.querySelector('#cssCode').value;
+		let jsCode = document.querySelector('#jsCode').value;
+		let htmlCode = document.querySelector('#htmlCode').value;
+		let result = `<style>${cssCode}</style>${htmlCode}<script>${jsCode}</script>`;
+		let doc;
+
+		if (iframe.contentDocument) {
+			doc = iframe.contentDocument;
+		} else if (iframe.contentWindow) {
+			doc = iframe.contentWindow.document;
+		}
+		else {
+			doc = iframe.document;
+		}
+
+		doc.open();
+		doc.writeln(result);
+		doc.close();
+	});
 });
-// // JavaScript Document
-// var wHeight = $(window).height();
-// var headerHeight = $("#header").height();
-// var codeContainerHeight = wHeight-headerHeight;
-
-// $(".codeContainer").height(codeContainerHeight+"px");
-
-// $(".toggle").click(function(e) {
-// 	$(this).toggleClass("selected");
-// 	var activeDiv = $(this).html();
-	
-// 	$("#"+activeDiv+"Container").toggle();
-// 	var showingDivs = $(".codeContainer").filter(function() {
-// 		return($(this).css("display") !== "none");
-// 	}).length;
-// 	var width = 100/showingDivs;
-// 	$(".codeContainer").width(width + "%");
-// 	$("#resultsFrame").width(width + "%");
-// });
-
-// $("#runButton").click(function() {
-// 	$("iframe").contents().find("html").html($('<style>' + $("#cssCode").val() + '</style>' + $("#htmlCode").val()));
-// });
