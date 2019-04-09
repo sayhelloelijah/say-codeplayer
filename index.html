@@ -10,30 +10,29 @@
 		<header class="codeplayer__nav">
     		<h1>say-codeplayer</h1>
             <div class="codeplayer__button-container">
-            	<button class="codeplayer__button" id="runButton">Run</button>
+                <button class="codeplayer__button" id="runButton">Run</button> or
+                <code>Shift + Enter</code>
             </div>
-            <nav class="codeplayer__toggles">
-            	<li class="codeplayer__toggle codeplayer__toggle--selected">HTML</li>
-                <li class="codeplayer__toggle">CSS</li>
-                <li class="codeplayer__toggle">JS</li>
-                <li class="codeplayer__toggle codeplayer__toggle--selected last">Result</li>
-            </nav>
-    	</header>
-        <div class="codeplayer__player" id="HTMLContainer">
-        	<div class="codeplayer__label">HTML</div>
-        	<textarea id="htmlCode">Example Code</textarea>
+        </header>
+        <div class="codeplayer__row">
+            <div class="codeplayer__player" id="HTMLContainer">
+                <div class="codeplayer__label">HTML</div>
+                <textarea id="htmlCode" placeholder="HTML"></textarea>
+            </div>
+            <div class="codeplayer__player" id="CSSContainer">
+                <div class="codeplayer__label">CSS</div>
+                <textarea id="cssCode" placeholder="CSS"></textarea>
+            </div>
+            <div class="codeplayer__player" id="JSContainer">
+                <div class="codeplayer__label">JavaScript</div>
+                <textarea id="jsCode" placeholder="JavaScript"></textarea>
+            </div>
         </div>
-        <div class="codeplayer__player" id="CSSContainer">
-        	<div class="codeplayer__label">CSS</div>
-        	<textarea id="cssCode">Example Code</textarea>
-        </div>
-        <div class="codeplayer__player" id="JSContainer">
-        	<div class="codeplayer__label">JS</div>
-        	<textarea id="jsCode">Example Code</textarea>
-        </div>
-        <div class="codeplayer__player codeplayer__results" id="ResultsContainer">
-        	<div class="codeplayer__label">Results</div>
-            <iframe class="codeplayer__results-frame"></iframe>
+        <div class="codeplayer__row">
+            <div class="codeplayer__player-results" id="ResultsContainer">
+                <div class="codeplayer__label">Results</div>
+                <iframe class="codeplayer__results-frame"></iframe>
+            </div>
         </div>
 	</div>
     <script src="app.js" type="text/javascript"></script>

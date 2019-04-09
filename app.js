@@ -7,40 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const windowHeight = window.innerHeight;
 	const headerHeight = header.clientHeight;
 	const runButton = document.querySelector('#runButton');
-	const iframe = document.querySelector('.codeplayer__results');
-
-	// Style Elements
-	playerContainers.forEach(container => {
-		container.style.height = `${windowHeight - headerHeight}px`;
-	});
-
-	// Event Listeners
-	playerToggles.forEach(toggle => {
-		toggle.addEventListener('click', (e) => {
-			toggle.classList.toggle('codeplayer__toggle--selected');
-			let activeDiv = toggle.innerHTML;
-
-			if (document.getElementById(`${activeDiv}Container`).style.display === 'block') {
-				document.getElementById(`${activeDiv}Container`).style.display = 'none';
-
-			} else {
-				document.getElementById(`${activeDiv}Container`).style.display = 'block';
-			}
-
-			let showing = Array.from(document.querySelectorAll('.codeplayer__player'));
-			showing = showing.filter((el) => {
-				if(el.style.display !== "none" || '') {
-					return (el.style.display !== 'none');
-				}
-			}).length;
-			let width = 100/showing;
-
-			playerContainers.forEach(container => {
-				container.style.width = `${width}%`;
-			});
-			iframe.style.width = `${width}%`;
-		})
-	});
+	const iframe = document.querySelector('.codeplayer__results-frame');
 
 	// Update iframe upon clicking the run button
 	runButton.addEventListener('click', () => {
@@ -62,5 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		doc.open();
 		doc.writeln(result);
 		doc.close();
+	});
+
+	playerContainers.forEach(container => {
+		container.addEventListener('keyup', (e) => {
+			if (e.shiftKey && e.key == "Enter") {
+				runButton.click();
+				e.preventDefault();
+			}
+		})
 	});
 });
